@@ -6,94 +6,9 @@ let httpServer;
 function startLocalServer(port = 4173) {
   const express = require('express');
   const compression = require('compression');
-  const { createProxyMiddleware } = require('http-proxy-middleware');
 
   const srv = express();
   srv.use(compression());
-
-  // ---- WB API proxy (обходит CORS) ----
-  srv.use(
-    '/wb',
-    createProxyMiddleware({
-      target: 'https://feedbacks-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
-
-  // ---- WB Ads API proxy (Promotion) ----
-  srv.use(
-    '/wb-ads',
-    createProxyMiddleware({
-      target: 'https://advert-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb-ads': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
-
-  // ---- WB Media Ads API proxy (advert-media-api) ----
-  srv.use(
-    '/wb-ads-media',
-    createProxyMiddleware({
-      target: 'https://advert-media-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb-ads-media': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
-
-  // ---- WB Common API proxy (general) ----
-  srv.use(
-    '/wb-common',
-    createProxyMiddleware({
-      target: 'https://common-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb-common': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
-
-  // ---- WB Content API proxy ----
-  srv.use(
-    '/wb-content',
-    createProxyMiddleware({
-      target: 'https://content-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb-content': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
-
-  // ---- WB Prices/Discounts API proxy ----
-  srv.use(
-    '/wb-prices',
-    createProxyMiddleware({
-      target: 'https://discounts-prices-api.wildberries.ru',
-      changeOrigin: true,
-      secure: true,
-      pathRewrite: { '^/wb-prices': '' },
-      onProxyReq: (proxyReq) => {
-        proxyReq.removeHeader('origin');
-      },
-    }),
-  );
 
   // ---- Static фронтенд ----
   const distDir = path.resolve(__dirname, '..', 'dist');

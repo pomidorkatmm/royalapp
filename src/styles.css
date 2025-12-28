@@ -515,12 +515,15 @@ a { color: inherit; }
   border: 2px solid #000;
   border-radius: 16px;
   background: #fff;
+  position: relative;
+  isolation: isolate;
 }
 
 .ue-table {
   border-collapse: collapse;
   min-width: 1600px;
   width: max-content;
+  table-layout: fixed;
 }
 
 .ue-table th, .ue-table td {
@@ -543,6 +546,11 @@ a { color: inherit; }
   top: 34px; /* высота первой строки заголовка */
   z-index: 3;
   font-weight: 800;
+}
+
+.ue-table tbody {
+  position: relative;
+  z-index: 1;
 }
 
 .ue-table tbody tr:nth-child(1) td {

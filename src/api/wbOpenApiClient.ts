@@ -106,7 +106,6 @@ const OPENAPI_BASES: Record<OpenApiSection, { primary: string; alt: string }> = 
   promotion: { primary: WB_PROXY_PROMOTION, alt: WB_PROXY_PROMOTION_ALT },
   chat: { primary: WB_PROXY_CHAT, alt: WB_PROXY_CHAT_ALT },
   supplies: { primary: WB_PROXY_SUPPLIERS, alt: WB_PROXY_SUPPLIERS_ALT },
-  supplies: { primary: WB_PROXY_SUPPLIES, alt: WB_PROXY_SUPPLIES_ALT },
   returns: { primary: WB_PROXY_RETURNS, alt: WB_PROXY_RETURNS_ALT },
   documents: { primary: WB_PROXY_DOCUMENTS, alt: WB_PROXY_DOCUMENTS_ALT },
 }
@@ -352,7 +351,7 @@ export async function requestOpenApiRaw(
   let lastError: unknown = new Error('Запрос не выполнен')
 
   for (const base of bases) {
-    const url = new URL(base + cleanPath, window.location.origin)
+    const url = new URL(base + cleanPath)
     if (opts.query) {
       for (const [k, v] of Object.entries(opts.query)) {
         if (v === undefined || v === null || v === '') continue

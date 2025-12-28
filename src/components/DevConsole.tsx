@@ -99,7 +99,7 @@ async function requestAdsRaw(
 
   for (const base of bases) {
     for (const auth of authCandidates) {
-      const url = new URL(base + path, window.location.origin)
+      const url = new URL(base + path)
       if (opts.query) {
         for (const [k, v] of Object.entries(opts.query)) {
           if (v === undefined || v === null || v === '') continue

@@ -1,48 +1,46 @@
 /**
  * Здесь собраны все эндпоинты WB, чтобы их было легко менять.
  *
- * В браузере мы обращаемся НЕ напрямую к https://feedbacks-api.wildberries.ru,
- * а к локальному пути /wb/... (через прокси Vite в dev и Express в prod),
- * чтобы избежать CORS.
+ * Используем прямые домены WB API, как в официальной документации.
  */
 
-export const WB_PROXY_BASE = '/wb'
-export const WB_PROXY_BASE_ALT = '/wb2'
+export const WB_PROXY_BASE = 'https://feedbacks-api.wildberries.ru'
+export const WB_PROXY_BASE_ALT = 'https://feedbacks-api.wb.ru'
 
-// Дополнительные прокси для A/B-тестов (обход CORS)
-export const WB_PROXY_ADS = '/wb-ads'
+// Домены WB API для A/B-тестов и других модулей
+export const WB_PROXY_ADS = 'https://advert-api.wildberries.ru'
 // Альтернативный домен Ads API (у части кабинетов встречается wb.ru)
-export const WB_PROXY_ADS_ALT = '/wb-ads2'
+export const WB_PROXY_ADS_ALT = 'https://advert-api.wb.ru'
 // WB Media ads API (отдельный домен)
-export const WB_PROXY_ADS_MEDIA = '/wb-ads-media'
-export const WB_PROXY_ADS_MEDIA_ALT = '/wb-ads-media2'
+export const WB_PROXY_ADS_MEDIA = 'https://advert-media-api.wildberries.ru'
+export const WB_PROXY_ADS_MEDIA_ALT = 'https://advert-media-api.wb.ru'
 // Общие методы (general): seller-info, новости и т.п.
-export const WB_PROXY_COMMON = '/wb-common'
-export const WB_PROXY_COMMON_ALT = '/wb-common2'
-export const WB_PROXY_CONTENT = '/wb-content'
-export const WB_PROXY_CONTENT_ALT = '/wb-content2'
-export const WB_PROXY_PRICES = '/wb-prices'
-export const WB_PROXY_PRICES_ALT = '/wb-prices2'
-export const WB_PROXY_SUPPLIERS = '/wb-suppliers'
-export const WB_PROXY_SUPPLIERS_ALT = '/wb-suppliers2'
-export const WB_PROXY_MARKETPLACE = '/wb-marketplace'
-export const WB_PROXY_MARKETPLACE_ALT = '/wb-marketplace2'
-export const WB_PROXY_STATISTICS = '/wb-statistics'
-export const WB_PROXY_STATISTICS_ALT = '/wb-statistics2'
-export const WB_PROXY_FINANCE = '/wb-finance'
-export const WB_PROXY_FINANCE_ALT = '/wb-finance2'
-export const WB_PROXY_ANALYTICS = '/wb-analytics'
-export const WB_PROXY_ANALYTICS_ALT = '/wb-analytics2'
-export const WB_PROXY_PROMOTION = '/wb-promotion'
-export const WB_PROXY_PROMOTION_ALT = '/wb-promotion2'
-export const WB_PROXY_CHAT = '/wb-chat'
-export const WB_PROXY_CHAT_ALT = '/wb-chat2'
-export const WB_PROXY_SUPPLIES = '/wb-supplies'
-export const WB_PROXY_SUPPLIES_ALT = '/wb-supplies2'
-export const WB_PROXY_RETURNS = '/wb-returns'
-export const WB_PROXY_RETURNS_ALT = '/wb-returns2'
-export const WB_PROXY_DOCUMENTS = '/wb-documents'
-export const WB_PROXY_DOCUMENTS_ALT = '/wb-documents2'
+export const WB_PROXY_COMMON = 'https://common-api.wildberries.ru'
+export const WB_PROXY_COMMON_ALT = 'https://common-api.wb.ru'
+export const WB_PROXY_CONTENT = 'https://content-api.wildberries.ru'
+export const WB_PROXY_CONTENT_ALT = 'https://content-api.wb.ru'
+export const WB_PROXY_PRICES = 'https://discounts-prices-api.wildberries.ru'
+export const WB_PROXY_PRICES_ALT = 'https://discounts-prices-api.wb.ru'
+export const WB_PROXY_SUPPLIERS = 'https://suppliers-api.wildberries.ru'
+export const WB_PROXY_SUPPLIERS_ALT = 'https://suppliers-api.wb.ru'
+export const WB_PROXY_MARKETPLACE = 'https://marketplace-api.wildberries.ru'
+export const WB_PROXY_MARKETPLACE_ALT = 'https://marketplace-api.wb.ru'
+export const WB_PROXY_STATISTICS = 'https://statistics-api.wildberries.ru'
+export const WB_PROXY_STATISTICS_ALT = 'https://statistics-api.wb.ru'
+export const WB_PROXY_FINANCE = 'https://finance-api.wildberries.ru'
+export const WB_PROXY_FINANCE_ALT = 'https://finance-api.wb.ru'
+export const WB_PROXY_ANALYTICS = 'https://analytics-api.wildberries.ru'
+export const WB_PROXY_ANALYTICS_ALT = 'https://analytics-api.wb.ru'
+export const WB_PROXY_PROMOTION = 'https://promotion-api.wildberries.ru'
+export const WB_PROXY_PROMOTION_ALT = 'https://promotion-api.wb.ru'
+export const WB_PROXY_CHAT = 'https://chat-api.wildberries.ru'
+export const WB_PROXY_CHAT_ALT = 'https://chat-api.wb.ru'
+export const WB_PROXY_SUPPLIES = 'https://suppliers-api.wildberries.ru'
+export const WB_PROXY_SUPPLIES_ALT = 'https://suppliers-api.wb.ru'
+export const WB_PROXY_RETURNS = 'https://suppliers-api.wildberries.ru'
+export const WB_PROXY_RETURNS_ALT = 'https://suppliers-api.wb.ru'
+export const WB_PROXY_DOCUMENTS = 'https://suppliers-api.wildberries.ru'
+export const WB_PROXY_DOCUMENTS_ALT = 'https://suppliers-api.wb.ru'
 
 export const WB_ENDPOINTS = {
   // Проверка токена делается через реальные «рабочие» методы (см. api/wbClient.ts)
