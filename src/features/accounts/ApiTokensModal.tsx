@@ -193,34 +193,19 @@ export default function ApiTokensModal({
                           const accessMessages: NonNullable<WbAccount['tokenChecks']>['accessMessages'] = {}
 
                           for (const section of ACCESS_SECTIONS) {
-                            let ok = false
-                            let lastInfo: ReturnType<typeof formatAccessError> | null = null
-                            for (const probe of section.probes) {
-                              try {
-                                await openApiFetch<any>(t, section.id, probe.path, { method: probe.method ?? 'GET', query: probe.query }, strategyId)
-                                ok = true
-                                break
-                              } catch (e: any) {
-                                lastInfo = formatAccessError(e)
-                                if (lastInfo.status === 401 || lastInfo.status === 403) {
-                                  break
-                                }
-                              }
-                            }
-
-                            if (ok) {
+                            try {
+                              await openApiFetch<any>(t, section.id, section.path, { method: section.method ?? 'GET', query: section.query }, strategyId)
                               access[section.id] = 'ok'
-                              continue
+                            } catch (e: any) {
+                              const info = formatAccessError(e)
+                              if (info.status === 401 || info.status === 403 || info.status === 404) {
+                                access[section.id] = 'error'
+                              } else {
+                                access[section.id] = 'warn'
+                              }
+                              accessMessages[section.id] = info.message
+                              errors.push(`${section.label}: ${info.message}`)
                             }
-
-                            if (!lastInfo) lastInfo = { message: 'Не удалось проверить доступ' }
-                            if (lastInfo.status === 401 || lastInfo.status === 403 || lastInfo.status === 404) {
-                              access[section.id] = 'error'
-                            } else {
-                              access[section.id] = 'warn'
-                            }
-                            accessMessages[section.id] = lastInfo.message
-                            errors.push(`${section.label}: ${lastInfo.message}`)
                           }
 
                           checks.access = access
