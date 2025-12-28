@@ -30,7 +30,7 @@ export function SplashScreen({ onDone, ms = 2000 }: { onDone: () => void; ms?: n
   return (
     <div className="splashRoot">
       <div className="splashCenter">
-        <div className="splashTitle">ROYAL CHAMRS</div>
+        <div className="splashTitle">ROYAL CHARMS</div>
         <div className={"splashSub " + (shown > 0 ? 'isShown' : '')}>
           {typed}
           <span className="splashCursor">▍</span>

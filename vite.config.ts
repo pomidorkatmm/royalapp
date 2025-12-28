@@ -84,6 +84,18 @@ export default defineConfig({
         secure: true,
         rewrite: (path) => path.replace(/^\/wb-prices2/, ''),
       },
+      '/wb-suppliers': {
+        target: 'https://suppliers-api.wildberries.ru',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/wb-suppliers/, ''),
+      },
+      '/wb-suppliers2': {
+        target: 'https://suppliers-api.wb.ru',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/wb-suppliers2/, ''),
+      },
       '/wb-marketplace': {
         target: 'https://marketplace-api.wildberries.ru',
         changeOrigin: true,

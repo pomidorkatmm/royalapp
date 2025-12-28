@@ -204,6 +204,38 @@ app.use(
   }),
 )
 
+// ---- WB Suppliers API proxy ----
+app.use(
+  '/wb-suppliers',
+  createProxyMiddleware({
+    target: 'https://suppliers-api.wildberries.ru',
+    changeOrigin: true,
+    secure: true,
+    pathRewrite: {
+      '^/wb-suppliers': '',
+    },
+    onProxyReq: (proxyReq) => {
+      proxyReq.removeHeader('origin')
+    },
+  }),
+)
+
+// ---- WB Suppliers API proxy (альтернативный домен suppliers-api.wb.ru) ----
+app.use(
+  '/wb-suppliers2',
+  createProxyMiddleware({
+    target: 'https://suppliers-api.wb.ru',
+    changeOrigin: true,
+    secure: true,
+    pathRewrite: {
+      '^/wb-suppliers2': '',
+    },
+    onProxyReq: (proxyReq) => {
+      proxyReq.removeHeader('origin')
+    },
+  }),
+)
+
 // ---- WB Marketplace API proxy ----
 app.use(
   '/wb-marketplace',
@@ -516,6 +548,8 @@ app.listen(port, () => {
   console.log('API proxy: /wb-content2 -> https://content-api.wb.ru')
   console.log('API proxy: /wb-prices -> https://discounts-prices-api.wildberries.ru')
   console.log('API proxy: /wb-prices2 -> https://discounts-prices-api.wb.ru')
+  console.log('API proxy: /wb-suppliers -> https://suppliers-api.wildberries.ru')
+  console.log('API proxy: /wb-suppliers2 -> https://suppliers-api.wb.ru')
   console.log('API proxy: /wb-marketplace -> https://marketplace-api.wildberries.ru')
   console.log('API proxy: /wb-marketplace2 -> https://marketplace-api.wb.ru')
   console.log('API proxy: /wb-statistics -> https://statistics-api.wildberries.ru')

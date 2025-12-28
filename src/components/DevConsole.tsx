@@ -247,7 +247,7 @@ export default function DevConsole({
           durationMs: result.durationMs,
           headers: result.headers,
           body: result.body,
-          usedBase: strategyId ? `Strategy ${strategyId}` : undefined,
+          usedBase: `${result.usedBase}${strategyId ? ` • Strategy ${strategyId}` : ''}`,
           error: statusNote,
         })
       }

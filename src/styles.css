@@ -329,6 +329,14 @@ a { color: inherit; }
   padding: 6px 8px;
 }
 
+.ue-table--compact thead th {
+  position: static;
+}
+
+.ue-table--compact thead tr:nth-child(2) th {
+  top: auto;
+}
+
 .devConsole {
   max-width: 480px;
 }
